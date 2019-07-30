@@ -1,158 +1,58 @@
-import React from 'react';
-import './App.css';
+import * as React from 'react';
+import { Text, View, StyleSheet } from 'react-native';
+import Constants from 'expo-constants';
 
-class App extends Comment {
-  render () {
+// You can import from local files
+import AssetExample from './components/AssetExample';
+
+// or any pure javascript modules available in npm
+import { Card } from 'react-native-paper';
+
+export default class App extends React.Component {
+  GetValueFunction=()=>{
+    const {TextInputValue}= this.state;
+    var currentDate =new Date();
+        var birthdayDate =new Date(TextInputValue);
+      var age_now = currentDate.getFullYear() - birthdayDate.getFullYear();
+      var t = currentDate.getMonth()- birthdayDate.getMonth();
+      if (t < 0 || (t == 0 && currentDate.getDate() < birthdayDate. getDate()))
+      {
+        age_now--;
+      }
+      Alert.alert( "your age now " +age_now)
+
+  }
+  render() {
     return (
-    <div className="wIapper">
-    <div className="form-wIapper">
-    <h1> upload cv</h1>
-    <form onSubmit ={this.handleSubmit} noValidate>
-    <div className="FiristName">
-    <label htmlFor="FiristName">First Name</label>
-    <input
-     type="text" 
-      className="" 
-       placeholder="First Name"
-        type="text"
-         name="firest Name" 
-          noValidate
-          onchange={this.handlechange}
-          />
+      <View style={styles.container}>
+        <TextInput style ={styles.input}>
+
+              <Text style={styles.paragraph}>
+hi
+</TextInput>
 
 
-     </div>
-     <div className="lastName">
-    <label htmlFor="LaststName">Last Name</label>
-    <input
-     type="text" 
-      className="" 
-       placeholder="Last Name"
-        type="text"
-         name="lastName" 
-          noValidate
-          onchange={this.handlechange}
-          />
-
-
-     </div>
-     <div className="university">
-    <label htmlFor="university">University</label>
-    <input
-     type="text" 
-      className="" 
-       placeholder="University"
-        type="text"
-         name="university" 
-          noValidate
-          onchange={this.handlechange}
-          />
-
-
-     </div>
-     <div className="major">
-    <label htmlFor="university">Major</label>
-    <input
-     type="text" 
-      className="" 
-       placeholder="Major"
-        type="text"
-         name="major" 
-          noValidate
-          onchange={this.handlechange}
-          />
-
-     //</div>
-     
-    </form> 
-    </div>
-    </div>
-    <div>
-    <button type="Submit">Submit
->
-</button>
-<h1> preview the uploaded cv's</h1>
-
-    </div>//
-    
-    <input type="submit" value="submit" class= "btn btn-primary btn-block"></input>
-
-
-
-
-
-
-    /*var express = require("express"),
-app = express(),
-bodyparser = require("body-parser"),
-mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost:27017/commuters", {useNewUrlParser: true});
-
-app.use(bodyparser.urlencoded({ extended: true }));
-app.set("view engine", "ejs");
-
-var schema = new mongoose.Schema({
-  route : String,
-  origin : String,
-  destination : String,
-  estimatedTimeOfArrival : String,
-  date : String,
-  time : String
-}) 
-var detailsModel = mongoose.model("detailsModel", schema);
-app.get("/", function (req, res) {
-res.render("index",{ details: null })
-})
-app.get("/getdetails", function (req, res) {   
-detailsModel.find({}, function (err, allDetails) {
-    if (err) {
-        console.log(err);
-    } else {
-        res.render("index", { details: allDetails })
-    }
-})
-})
-app.listen(3000, "localhost", function () {
-console.log("server has started");
-} )*/
-<table className="App-table">
-<tr> <td>FiristName</td>
-<th>LaststName</th>
-<th>University</th>
-<th>Major</th>
-<th>cv</th>
-</tr>
-<tr>
-  <td> </td>
-  <td> </td>
-  <td> </td>
-  <td> </td>
-  <td>Downloadd </td>
-</tr>
-<tr>
-<td> </td>
-  <td> </td>
-  <td> </td>
-  <td> </td>
-  <td>Downloadd </td>
-</tr>
-
-<tr>
-<td> </td>
-  <td> </td>
-  <td> </td>
-  <td> </td>
-  <td>Downloadd </td>
-</tr>
-<tr>
-<td> </td>
-  <td> </td>
-  <td> </td>
-  <td> </td>
-  <td>Downloadd </td>
-</tr>
-
-</table>
+        </Text>
+        <Card>
+          <AssetExample />
+        </Card>
+      </View>
+    );
+  }
 }
-}
-export default App;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    paddingTop: Constants.statusBarHeight,
+    backgroundColor: '#ecf0f1',
+    padding: 8,
+  },
+  paragraph: {
+    margin: 24,
+    fontSize: 18,
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+});
